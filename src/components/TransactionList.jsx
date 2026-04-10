@@ -1,26 +1,29 @@
 import TransactionItem from "./TransactionItem";
 
-function TransactionList({ transactions = [], setTransactions }) {
+export default function TransactionList({
+  transactions = [],
+  onDelete,
+  limit,
+  emptyMessage = "No transactions yet.",
+}) {
+  const items = limit ? transactions.slice(0, limit) : transactions;
 
-  const deleteTransaction = (id) => {
-    setTransactions((prev) => prev.filter((t) => t.id !== id));
-  };
-
-  if (transactions.length === 0) {
-    return <p>No transactions yet</p>;
+  if (items.length === 0) {
+    return (
+      <div className="tx-list__empty">
+        <span className="tx-list__empty-icon">◎</span>
+        <p>{emptyMessage}</p>
+      </div>
+    );
   }
 
   return (
-    <div>
-      {transactions.map((t) => (
-        <TransactionItem
-          key={t.id}
-          transaction={t}
-          deleteTransaction={deleteTransaction}
-        />
+    <ul className="tx-list">
+      {items.map((tx) => (
+        <li key={tx.id}>
+          <TransactionItem transaction={tx} onDelete={onDelete} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
-
-export default TransactionList;

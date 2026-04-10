@@ -1,10 +1,77 @@
-.suggestions {
-  padding: 30px;
+.sugg { max-width: 660px; animation: fadeIn 0.35s ease; }
+
+.sugg__title    { font-size: 28px; font-weight: 700; letter-spacing: -0.03em; }
+.sugg__subtitle { font-size: 13px; color: var(--muted); font-family: var(--font-mono); margin-top: 4px; margin-bottom: 2rem; }
+
+.sugg__empty {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 12px; padding: 4rem; color: var(--muted); text-align: center;
+}
+.sugg__empty span { font-size: 36px; opacity: 0.3; }
+.sugg__empty p    { font-size: 14px; font-family: var(--font-mono); }
+
+.sugg__list { display: flex; flex-direction: column; gap: 14px; }
+
+/* Card */
+.sugg__card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform 0.15s, border-color 0.15s;
+  animation: slideIn 0.3s ease both;
 }
 
-.suggestion-card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
+
+.sugg__card:nth-child(2) { animation-delay: 0.06s; }
+.sugg__card:nth-child(3) { animation-delay: 0.12s; }
+.sugg__card:nth-child(4) { animation-delay: 0.18s; }
+.sugg__card:nth-child(5) { animation-delay: 0.24s; }
+
+.sugg__card:hover { transform: translateX(3px); }
+
+.sugg__card--danger  { border-left-color: var(--expense); }
+.sugg__card--warning { border-left-color: var(--warning); }
+.sugg__card--good    { border-left-color: var(--income); }
+.sugg__card--info    { border-left-color: var(--accent2); }
+.sugg__card--neutral { border-left-color: var(--accent); }
+
+.sugg__card-top {
+  display: flex; align-items: flex-start; gap: 14px;
+}
+
+.sugg__card-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.sugg__card-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--text); margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+
+.sugg__card-body { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+.sugg__card-tip {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 10px 12px;
+}
+
+.sugg__tip-label {
+  font-size: 10px; font-family: var(--font-mono);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--accent); flex-shrink: 0; margin-top: 2px;
+  border: 1px solid rgba(200,241,53,0.3); border-radius: 4px;
+  padding: 2px 6px;
+}
+
+.sugg__tip-text { font-size: 13px; color: var(--text); line-height: 1.5; }
